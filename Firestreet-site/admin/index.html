@@ -92,4 +92,78 @@
 
             {
               name: "portfolio",
-              label: "Раб
+              label: "Работы: до/после",
+              file: "content/portfolio.json",
+              format: "json",
+              media_folder: "Images",
+              public_folder: "/Images",
+              fields: [
+                {
+                  label: "Список работ",
+                  name: "items",
+                  widget: "list",
+                  fields: [
+                    {
+                      label: "Заголовок",
+                      name: "title",
+                      widget: "string",
+                    },
+                    {
+                      label: "Метка (тип объекта)",
+                      name: "tag",
+                      widget: "string",
+                    },
+                    {
+                      label: "Фото ДО",
+                      name: "before",
+                      widget: "image",
+                    },
+                    {
+                      label: "Фото ПОСЛЕ",
+                      name: "after",
+                      widget: "image",
+                    },
+                    {
+                      label: "Описание",
+                      name: "description",
+                      widget: "text",
+                    },
+                  ],
+                },
+              ],
+            },
+
+            {
+              name: "videos",
+              label: "Видео с объектов",
+              file: "content/videos.json",
+              format: "json",
+              media_folder: "Video",
+              public_folder: "/Video",
+              fields: [
+                {
+                  label: "Видео",
+                  name: "items",
+                  widget: "list",
+                  fields: [
+                    {
+                      label: "Подпись",
+                      name: "title",
+                      widget: "string",
+                    },
+                    {
+                      label: "Файл видео (mp4)",
+                      name: "file",
+                      widget: "file",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      });
+    });
+  </script>
+</body>
+</html>
