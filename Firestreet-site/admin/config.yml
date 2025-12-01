@@ -8,68 +8,105 @@ public_folder: "/Images/uploads"
 locale: "ru"
 
 collections:
-  # Главная страница (hero + услуги + телефоны)
+  # Весь контент сайта
   - label: "Контент сайта"
     name: "site_content"
     files:
+      # === ГЛАВНАЯ СТРАНИЦА / HERO / УСЛУГИ / КОНТАКТЫ ===
       - label: "Главная страница"
         name: "home"
         file: "content/home.json"
         format: "json"
         fields:
-          - label: "Бейдж над заголовком"
+          - label: "Бейдж над заголовком (самый верх)"
             name: "badge"
             widget: "string"
-          - label: "Заголовок"
+            hint: "Например: Орск и восточное Оренбуржье"
+
+          - label: "Главный заголовок"
             name: "title"
             widget: "string"
+            hint: "Большой заголовок в блоке HERO"
+
           - label: "Описание под заголовком"
             name: "description"
             widget: "text"
-          - label: "Список преимуществ"
+            hint: "Пара предложений под заголовком HERO"
+
+          - label: "Список преимуществ в HERO"
             name: "bullets"
             widget: "list"
+            hint: "Три-четыре пункта под описанием (Бесплатный выезд и т.д.)"
             field:
               label: "Пункт"
               name: "item"
               widget: "string"
-          - label: "Текст кнопки — основная"
+
+          - label: "Текст основной кнопки (левая, зелёная)"
             name: "cta_primary"
             widget: "string"
-          - label: "Текст кнопки — позвонить"
+            hint: "Кнопка 'Оставить заявку'"
+
+          - label: "Текст кнопки 'Позвонить'"
             name: "cta_secondary"
             widget: "string"
+            hint: "Кнопка рядом с основной, с телефоном"
+
           - label: "Подзаголовок под кнопками"
             name: "subtitle"
             widget: "string"
-          - label: "Заголовок блока услуг"
+            hint: "Маленький текст под кнопками (про частные дома, коттеджи и т.д.)"
+
+          - label: "Заголовок блока 'Чем мы занимаемся'"
             name: "services_title"
             widget: "string"
-          - label: "Услуги (список)"
+
+          - label: "Услуги (список справа в HERO)"
             name: "services"
             widget: "list"
             field:
               label: "Услуга"
               name: "item"
               widget: "string"
-          - label: "Телефоны для связи"
+
+          - label: "Телефоны для связи (2 штуки)"
             name: "phones"
             widget: "list"
+            hint: "Первый — основной, второй — дополнительный"
             field:
               label: "Телефон"
               name: "item"
               widget: "string"
-          - label: "Фраза внизу (под телефонами)"
+
+          - label: "Текст внизу в подвале (под копирайтом)"
             name: "footer_note"
             widget: "string"
-          - label: "Номер WhatsApp для формы"
+            hint: "Например: Ваши желания — прежде всего."
+
+          - label: "Номер WhatsApp для заявки"
             name: "whatsapp_number"
             widget: "string"
-          - label: "Ссылка на Telegram (если нужна)"
+            hint: "Любой формат (+7 915..., 8915..., 7915...). Мы сами вытащим цифры для wa.me"
+
+          - label: "Ссылка на Telegram"
             name: "telegram_link"
             widget: "string"
             required: false
+            hint: "Если указать, кнопка 'Связаться в Telegram' будет вести сюда"
 
+          - label: "Ссылка для основного телефона (опционально)"
+            name: "phone_main_href"
+            widget: "string"
+            required: false
+            hint: "Например: tel:+79150000056 или ссылка коллтрекинга. Если пусто — берётся из основного номера."
+
+          - label: "Ссылка для второго телефона (опционально)"
+            name: "phone_second_href"
+            widget: "string"
+            required: false
+            hint: "Если пусто — берётся из второго номера."
+
+      # === ПОРТФОЛИО: ДО / ПОСЛЕ ===
       - label: "Портфолио: до / после"
         name: "portfolio"
         file: "content/portfolio.json"
@@ -78,28 +115,39 @@ collections:
           - label: "Заголовок блока"
             name: "title"
             widget: "string"
+            hint: "Текст 'Наши работы: до и после'"
+
           - label: "Описание под заголовком"
             name: "description"
             widget: "text"
             required: false
-          - label: "Работы"
+            hint: "Короткое описание блока с примерами"
+
+          - label: "Работы (карточки до/после)"
             name: "items"
             widget: "list"
             fields:
               - label: "Название объекта"
                 name: "title"
                 widget: "string"
-              - label: "Описание (optional)"
+                hint: "Например: Частный дом, Коммерческий объект и т.п."
+
+              - label: "Описание (необязательно)"
                 name: "description"
                 widget: "text"
                 required: false
+
               - label: "Фото ДО"
                 name: "before"
                 widget: "image"
+                hint: "Картинка участка/объекта до работ"
+
               - label: "Фото ПОСЛЕ"
                 name: "after"
                 widget: "image"
+                hint: "Картинка участка/объекта после работ"
 
+      # === ВИДЕО С ОБЪЕКТОВ ===
       - label: "Видео"
         name: "videos"
         file: "content/videos.json"
@@ -108,10 +156,14 @@ collections:
           - label: "Заголовок блока"
             name: "title"
             widget: "string"
-          - label: "Описание под заголовком (optional)"
+            hint: "Например: Видео с объектов"
+
+          - label: "Описание под заголовком"
             name: "description"
             widget: "text"
             required: false
+            hint: "Пара строк под заголовком блока видео"
+
           - label: "Видео"
             name: "items"
             widget: "list"
@@ -119,15 +171,21 @@ collections:
               - label: "Название"
                 name: "title"
                 widget: "string"
-              - label: "Описание (optional)"
+                hint: "Краткий заголовок ролика"
+
+              - label: "Описание (необязательно)"
                 name: "description"
                 widget: "text"
                 required: false
+
               - label: "Файл видео (загрузить)"
                 name: "file"
                 widget: "file"
                 required: false
-              - label: "Или ссылка (YouTube / другая)"
+                hint: "MP4/WebM и т.п. Файл положится в Images/uploads"
+
+              - label: "Или ссылка (YouTube / другое)"
                 name: "url"
                 widget: "string"
                 required: false
+                hint: "Если заполнена ссылка — можно не загружать файл"
