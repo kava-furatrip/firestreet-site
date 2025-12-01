@@ -1,57 +1,108 @@
 backend:
   name: git-gateway
-  branch: main   # если у тебя репозиторий на другой ветке (master) — поставь её
+  branch: main
 
 media_folder: "Images/uploads"
 public_folder: "/Images/uploads"
 
 collections:
-  - name: "content"
-    label: "Контент сайта"
-    files:
-      - file: "content/home.json"
-        label: "Основные тексты и телефоны"
-        name: "home_content"
-        format: "json"
-        fields:
-          - { label: "Заголовок (hero)", name: "hero_title", widget: "string" }
-          - { label: "Подзаголовок (hero)", name: "hero_subtitle", widget: "text" }
-          - { label: "Пункт 1 (hero)", name: "hero_bullet_1", widget: "string" }
-          - { label: "Пункт 2 (hero)", name: "hero_bullet_2", widget: "string" }
-          - { label: "Пункт 3 (hero)", name: "hero_bullet_3", widget: "string" }
-          - { label: "Основной телефон (текст)", name: "phone_main", widget: "string" }
-          - { label: "Основной телефон (tel:+...)", name: "phone_main_href", widget: "string" }
-          - { label: "Второй телефон (текст)", name: "phone_second", widget: "string", required: false }
-          - { label: "Второй телефон (tel:+...)", name: "phone_second_href", widget: "string", required: false }
-          - { label: "Ссылка на Telegram", name: "telegram_link", widget: "string", required: false }
+  # --- ОСНОВНЫЕ ТЕКСТЫ, ТЕЛЕФОНЫ, ССЫЛКИ ---
+  - name: "home"
+    label: "Основные тексты и телефоны"
+    file: "content/home.json"
+    format: "json"
+    fields:
+      - label: "Заголовок (hero)"
+        name: "hero_title"
+        widget: "string"
 
-      - file: "content/portfolio.json"
-        label: "Работы: до/после"
-        name: "portfolio"
-        format: "json"
-        media_folder: "Images"
-        public_folder: "/Images"
-        fields:
-          - label: "Список работ"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Метка (например, Частный дом)", name: "tag", widget: "string" }
-              - { label: "Фото ДО", name: "before", widget: "image" }
-              - { label: "Фото ПОСЛЕ", name: "after", widget: "image" }
-              - { label: "Описание", name: "description", widget: "text" }
+      - label: "Подзаголовок (hero)"
+        name: "hero_subtitle"
+        widget: "text"
 
-      - file: "content/videos.json"
-        label: "Видео с объектов"
-        name: "videos"
-        format: "json"
-        media_folder: "Video/uploads"
-        public_folder: "/Video/uploads"
+      - label: "Пункт 1 (hero)"
+        name: "hero_bullet_1"
+        widget: "string"
+
+      - label: "Пункт 2 (hero)"
+        name: "hero_bullet_2"
+        widget: "string"
+
+      - label: "Пункт 3 (hero)"
+        name: "hero_bullet_3"
+        widget: "string"
+
+      - label: "Основной телефон (текст)"
+        name: "phone_main"
+        widget: "string"
+
+      - label: "Основной телефон (tel:+...)"
+        name: "phone_main_href"
+        widget: "string"
+
+      - label: "Второй телефон (текст)"
+        name: "phone_second"
+        widget: "string"
+        required: false
+
+      - label: "Второй телефон (tel:+...)"
+        name: "phone_second_href"
+        widget: "string"
+        required: false
+
+      - label: "Ссылка на Telegram"
+        name: "telegram_link"
+        widget: "string"
+        required: false
+
+  # --- РАБОТЫ ДО/ПОСЛЕ ---
+  - name: "portfolio"
+    label: "Работы: до/после"
+    file: "content/portfolio.json"
+    format: "json"
+    media_folder: "Images"
+    public_folder: "/Images"
+    fields:
+      - label: "Список работ"
+        name: "items"
+        widget: "list"
         fields:
-          - label: "Видео"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Подпись", name: "title", widget: "string" }
-              - { label: "Файл видео (mp4)", name: "file", widget: "file" }
+          - label: "Заголовок"
+            name: "title"
+            widget: "string"
+
+          - label: "Метка (тип объекта)"
+            name: "tag"
+            widget: "string"
+
+          - label: "Фото ДО"
+            name: "before"
+            widget: "image"
+
+          - label: "Фото ПОСЛЕ"
+            name: "after"
+            widget: "image"
+
+          - label: "Описание"
+            name: "description"
+            widget: "text"
+
+  # --- ВИДЕО ---
+  - name: "videos"
+    label: "Видео с объектов"
+    file: "content/videos.json"
+    format: "json"
+    media_folder: "Video"
+    public_folder: "/Video"
+    fields:
+      - label: "Видео"
+        name: "items"
+        widget: "list"
+        fields:
+          - label: "Подпись"
+            name: "title"
+            widget: "string"
+
+          - label: "Файл видео (mp4)"
+            name: "file"
+            widget: "file"
