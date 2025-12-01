@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Firestreet — благоустройство территорий в Орске</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Firestreet — профессиональная уборка территорий, ландшафтный дизайн и украшение домов гирляндами в Орске и восточном Оренбуржье. Бесплатный выезд и консультация." />
+
+  <style>
+    /* === ШРИФТЫ ИЗ ПАПКИ FONTS === */
+    @font-face {
+      font-family: "Intro";
+      src: url("Fonts/Intro-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Intro-regular";
+      src: url("Fonts/Intro-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    :root {
+      --bg-main: #0c1607;
+      --bg-alt: #101a0b;
+      --accent: #88d749;
+      --accent-strong: #d8ff7a;
+      --accent-soft: rgba(136, 215, 73, 0.25);
+      --text-main: #f8f9f2;
+      --text-muted: #c0ccb5;
+      --border-soft: rgba(255, 255, 255, 0.12);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Intro-regular", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, #213a13 0, transparent 45%),
+        radial-gradient(circle at 90% 80%, #1a2c10 0, transparent 50%),
+        #050806;
+      color: var(--text-main);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ===== ГЛАСС-ШАПКА ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px) saturate(150%);
+      background: rgba(3, 6, 2, 0.92);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 0;
+    }
+
+    .logo img {
+      height: 64px;
+      display: block;
+      filter: drop-shadow(0 0 14px rgba(0, 0, 0, 0.7));
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    nav a:hover {
+      background: rgba(0, 0, 0, 0.65);
+      border-color: var(--accent-soft);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .header-phone {
+      font-size: 14px;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(23, 40, 10, 0.9));
+      white-space: nowrap;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .header-phone:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+      border-color: var(--accent-strong);
+    }
+
+    /* ===== ОБЩИЕ СЕКЦИИ ===== */
+    section {
+      padding: 60px 0;
+    }
+
+    .section-alt {
+      background: radial-gradient(circle at center, #101b0b 0, #050806 100%);
+    }
+
+    h1, h2, h3 {
+      font-family: "Intro", system-ui, sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 26px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 6px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--text-muted);
+      max-width: 520px;
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    /* ===== ГЛАСС-КАРТОЧКИ ===== */
+    .card {
+      position: relative;
+      background: rgba(7, 14, 5, 0.62);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(18px) saturate(150%);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.12), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeInUp 0.9s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-main,
+    .hero-side {
+      flex: 1 1 280px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--border-soft);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .hero-badge::before {
+      content: "●";
+      color: var(--accent);
+      margin-right: 6px;
+      text-shadow: 0 0 10px rgba(136, 215, 73, 0.9);
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      margin: 6px 0 16px;
+      line-height: 1.6;
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .hero-list {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 4px 0 0;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .hero-side ul {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .hero-phones {
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .hero-phones a {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    /* ===== КНОПКИ С АНИМАЦИЕЙ ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #071105;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -30%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+      );
+      transform: translateX(-120%) skewX(-20deg);
+      pointer-events: none;
+    }
+
+    .btn-primary:hover::after {
+      animation: btnShine 0.9s ease-out;
+    }
+
+    @keyframes btnShine {
+      from {
+        transform: translateX(-120%) skewX(-20deg);
+      }
+      to {
+        transform: translateX(220%) skewX(-20deg);
+      }
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.04);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.95);
+    }
+
+    .btn-secondary {
+      border-color: var(--accent-soft);
+      background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.9), #111a0c);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.9);
+      border-color: var(--accent-strong);
+      background: radial-gradient(circle at top left, rgba(19, 32, 10, 0.95), #020503);
+    }
+
+    /* ===== ГРИДЫ ===== */
+    .cols-3 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .cols-3 > div {
+      flex: 1 1 260px;
+    }
+
+    .cols-2 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .cols-2 > div {
+      flex: 1 1 280px;
+    }
+
+    ul.clean {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    ul.clean li {
+      margin-bottom: 6px;
+    }
+
+    /* ===== ПОРТФОЛИО ===== */
+    .portfolio-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .portfolio-images {
+      display: flex;
+    }
+
+    .portfolio-images img {
+      width: 50%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.1);
+    }
+
+    .portfolio-text {
+      padding: 12px 16px 16px;
+      background: rgba(4, 8, 3, 0.98);
+      border-top: 1px solid var(--border-soft);
+      font-size: 14px;
+      color: var(--text-muted);
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .portfolio-tag {
+      display: inline-block;
+      margin-bottom: 4px;
+      padding: 2px 10px;
+      font-size: 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #eaf7da;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    /* ===== ВИДЕО ===== */
+    .video-box {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-box video {
+      width: 100%;
+      height: 220px;
+      display: block;
+    }
+
+    .video-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    /* ===== ФОРМА ===== */
+    .form-row {
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .form-row label {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: rgba(0, 0, 0, 0.62);
+      padding: 8px 10px;
+      color: var(--text-main);
+      font-family: "Intro-regular", system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 6px 0 0;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .form-note a {
+      color: var(--accent-strong);
+    }
+
+    /* ===== КОНТАКТЫ ===== */
+    .contacts-list p {
+      margin: 4px 0;
+      font-size: 14px;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .contacts-list a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .contact-actions {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    /* ===== ГИРЛЯНДЫ КАРТИНКА ===== */
+    .garlands-img {
+      width: 100%;
+      border-radius: var(--radius-md);
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.85);
+    }
+
+    /* ===== ПОЛИТИКА ===== */
+    .policy-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 6px 0;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      background: rgba(4, 7, 3, 0.96);
+      padding: 16px 0 18px;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      font-family: "Intro-regular", system-ui, sans-serif;
+    }
+
+    .footer-slogan {
+      color: var(--accent-soft);
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .footer-inner a {
+      text-decoration: none;
+      color: var(--text-muted);
+    }
+
+    .footer-credit {
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    .footer-credit span {
+      color: var(--accent-strong);
+    }
+
+    @media (max-width: 860px) {
+      nav {
+        display: none;
+      }
+
+      .header-inner {
+        justify-content: space-between;
+      }
+
+      section {
+        padding: 42px 0;
+      }
+
+      .cols-3,
+      .cols-2 {
+        flex-direction: column;
+      }
+
+      .footer-right {
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header>
+    <div class="wrapper header-inner">
+      <a href="#top" class="logo">
+        <img src="Images/Логотип/Logo.png" alt="Firestreet логотип">
+      </a>
+
+      <nav>
+        <a href="#services">Услуги</a>
+        <a href="#portfolio">До / После</a>
+        <a href="#video">Видео</a>
+        <a href="#garlands">Гирлянды</a>
+        <a href="#request">Заявка</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <a class="header-phone" href="tel:+79150000056" data-role="phone-main-header">
+        Бесплатная консультация и выезд
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section>
+      <div class="wrapper hero-inner">
+        <div class="hero-main fade">
+          <div class="card">
+            <div class="hero-badge">Орск и восточное Оренбуржье</div>
+            <h1 data-content="hero_title">Firestreet — благоустройство территорий под ключ</h1>
+            <p class="hero-subtitle" data-content="hero_subtitle">
+              Профессиональная уборка участков, ландшафтный дизайн и украшение домов
+              гирляндами. Мы берём на себя всю тяжёлую работу, чтобы вы просто
+              смотрели на свой участок и улыбались.
+            </p>
+            <ul class="hero-list">
+              <li data-content="hero_bullet_1">Бесплатный выезд и консультация</li>
+              <li data-content="hero_bullet_2">Индивидуальный расчёт стоимости под задачу</li>
+              <li data-content="hero_bullet_3">Фото «до/после» на каждом объекте</li>
+            </ul>
+            <div class="hero-actions">
+              <a href="#request" class="btn btn-primary">Оставить заявку</a>
+              <a href="tel:+79150000056" class="btn btn-secondary" data-role="phone-main-button">
+                Позвонить: +7 (915) 000-00-56
+              </a>
+            </div>
+            <p class="hero-note">
+              Частные дома, коттеджи, территории бизнеса, стройплощадки — порядок наведём везде.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-side fade" style="animation-delay:0.12s;">
+          <div class="card">
+            <h3>Чем мы занимаемся</h3>
+            <ul>
+              <li>Уборка территории</li>
+              <li>Спил деревьев</li>
+              <li>Покос травы</li>
+              <li>Подготовка участка под строительство</li>
+              <li>Вывоз мусора и демонтаж</li>
+              <li>Украшение домов и площадок гирляндами</li>
+            </ul>
+            <div class="hero-phones">
+              <span class="muted">Телефоны для связи:</span>
+              <a href="tel:+79150000056" data-role="phone-main-list">+7 (915) 000-00-56</a>
+              <a href="tel:+79850000056" data-role="phone-second-list">+7 (985) 000-00-56</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section id="services" class="section-alt">
+      <div class="wrapper">
+        <div class="section-header fade">
+          <h2>Услуги Firestreet</h2>
+          <p>Все услуги с визитки плюс измельчитель веток. Если задача нестандартная — просто расскажите о ней, подберём решение.</p>
+        </div>
+
+        <div class="cols-3">
+          <!-- БЛАГОУСТРОЙСТВО И УБОРКА -->
+          <div class="fade" style="animation-delay:0.05s;">
+            <div class="card">
+              <h3>Благоустройство и уборка</h3>
+              <ul class="clean">
+                <li>Уборка территории</li>
+                <li>Спил деревьев</li>
+                <li>Покос травы</li>
+                <li>Измельчитель веток</li>
+                <li>Разнорабочие (смена)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ТЕХНИКА И ЗЕМЛЯНЫЕ РАБОТЫ -->
+          <div class="fade" style="animation-delay:0.12s;">
+            <div class="card">
+              <h3>Техника и земляные работы</h3>
+              <ul class="clean">
+                <li>Автовышка</li>
+                <li>Погрузчик-экскаватор</li>
+                <li>Подготовка участка под строительство</li>
+                <li>Демонтаж</li>
+                <li>КамАЗ, МАЗ</li>
+                <li>Вывоз мусора</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ЗАБОРЫ И ЛАНДШАФТ -->
+          <div class="fade" style="animation-delay:0.18s;">
+            <div class="card">
+              <h3>Заборы и ландшафт</h3>
+              <ul class="clean">
+                <li>Установка заборов</li>
+                <li>Планировка и организация участка</li>
+                <li>Формирование зелёных зон и клумб</li>
+                <li>Уход за газоном и деревьями</li>
+                <li>Консультации по ландшафтному дизайну</li>
+              </ul>
+              <p class="muted" style="margin-top:8px;">
+                Прайс не фиксированный — каждый объект считаем индивидуально по фото или при выезде на место.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ДО / ПОСЛЕ (динамически из JSON) -->
+    <section id="portfolio">
+      <div class="wrapper">
+        <div class="section-header fade">
+          <h2>Наши работы: до и после</h2>
+          <p>Живые примеры с объектов. Все фотографии — реальные участки, с которыми работала команда Firestreet.</p>
+        </div>
+
+        <div id="portfolio-list" class="cols-3"></div>
+      </div>
+    </section>
+
+    <!-- ВИДЕО (динамически из JSON) -->
+    <section id="video" class="section-alt">
+      <div class="wrapper">
+        <div class="section-header fade">
+          <h2>Видео с объектов</h2>
+          <p>Короткие ролики с реальных работ Firestreet.</p>
+        </div>
+
+        <div id="video-list" class="cols-3"></div>
+      </div>
+    </section>
+
+    <!-- ГИРЛЯНДЫ -->
+    <section id="garlands">
+      <div class="wrapper">
+        <div class="section-header fade">
+          <h2>Украшение домов и площадок гирляндами</h2>
+          <p>Световой декор для домов, заведений и площадок под мероприятия — от идеи до безопасного монтажа.</p>
+        </div>
+
+        <div class="cols-2">
+          <div class="fade" style="animation-delay:0.05s;">
+            <div class="card">
+              <h3>Праздничный свет</h3>
+              <ul class="clean">
+                <li>Оформление фасадов частных домов и коттеджей</li>
+                <li>Украшение веранд, беседок, деревьев и заборов</li>
+                <li>Подбор гирлянд по стилю и бюджету</li>
+                <li>Безопасный монтаж и подключение</li>
+                <li>Аккуратный демонтаж после праздников</li>
+              </ul>
+              <p class="muted" style="margin-top:8px;">
+                Новый год, свадьба, день рождения, открытие бизнеса —
+                сделаем так, чтобы ваш дом был главным ориентиром на карте праздника.
+              </p>
+            </div>
+          </div>
+
+          <div class="fade" style="animation-delay:0.12s;">
+            <div class="card">
+              <img class="garlands-img" src="Images/Гирлянды/1.png" alt="Дом, украшенный гирляндами">
+              <p class="muted" style="margin-top:8px;">
+                Один из примеров оформления. Ещё больше вариантов покажем при встрече.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ЗАЯВКА -->
+    <section id="request" class="section-alt">
+      <div class="wrapper">
+        <div class="section-header fade">
+          <h2>Бесплатный выезд и консультация</h2>
+          <p>Оставьте контакты — перезвоним, уточним детали и предложим варианты по вашему участку.</p>
+        </div>
+
+        <div class="cols-2">
+          <div class="fade" style="animation-delay:0.05s;">
+            <div class="card">
+              <form id="request-form" name="firestreet-request" method="post" data-netlify="true">
+                <input type="hidden" name="form-name" value="firestreet-request">
+                <div class="form-row">
+                  <label for="name">Имя</label>
+                  <input id="name" name="name" type="text" required placeholder="Как к вам обращаться">
+                </div>
+                <div class="form-row">
+                  <label for="phone">Телефон</label>
+                  <input id="phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="form-row">
+                  <label for="service">Что нужно сделать</label>
+                  <select id="service" name="service">
+                    <option value="">Выберите из списка</option>
+                    <option>Уборка территории</option>
+                    <option>Спил деревьев</option>
+                    <option>Покос травы</option>
+                    <option>Подготовка участка под строительство</option>
+                    <option>Вывоз мусора</option>
+                    <option>Украшение гирляндами</option>
+                    <option>Другое</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="message">Комментарий</label>
+                  <textarea id="message" name="message" placeholder="Опишите участок, примерный размер, сроки и любые детали."></textarea>
+                </div>
+                <div class="form-row">
+                  <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                  <p class="form-note">
+                    Нажимая кнопку, вы даёте согласие на обработку персональных данных
+                    и принимаете <a href="#privacy">политику конфиденциальности</a>.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="fade" style="animation-delay:0.12s;">
+            <div class="card contacts-list">
+              <h3 id="contacts">Контакты Firestreet</h3>
+              <p><strong>Телефоны:</strong></p>
+              <p><a href="tel:+79150000056" data-role="phone-main-list-2">+7 (915) 000-00-56</a></p>
+              <p><a href="tel:+79850000056" data-role="phone-second-list-2">+7 (985) 000-00-56</a></p>
+              <p style="margin-top:10px;"><strong>Регион работы:</strong></p>
+              <p>г. Орск и восточное Оренбуржье.</p>
+              <p style="margin-top:10px;"><strong>График:</strong></p>
+              <p>Ежедневно, по предварительной договорённости.</p>
+              <p class="muted" style="margin-top:10px;">
+                Удобнее позвонить прямо сейчас — сразу скажем, когда можем подъехать
+                на бесплатный осмотр участка.
+              </p>
+              <div class="contact-actions">
+                <a href="https://wa.me/79150000056" class="btn btn-secondary contact-btn" data-role="whatsapp-contact">
+                  Связаться в WhatsApp
+                </a>
+                <a href="#" class="btn btn-secondary contact-btn" data-role="telegram-contact">
+                  Связаться в Telegram
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ПОЛИТИКА -->
+    <section id="privacy">
+      <div class="wrapper">
+        <div class="card policy-text fade">
+          <h2>Политика конфиденциальности</h2>
+          <p>
+            Настоящая Политика конфиденциальности описывает порядок обработки персональных
+            данных пользователей сайта <strong>firestreet.ru</strong>.
+          </p>
+          <p>
+            Оставляя заявку на сайте, пользователь добровольно предоставляет свои данные
+            (имя, номер телефона, сведения о запрашиваемых услугах) и даёт согласие на их
+            обработку компанией Firestreet в целях консультации, подготовки коммерческого
+            предложения, заключения и исполнения договора.
+          </p>
+          <p>
+            Персональные данные не передаются третьим лицам, за исключением случаев,
+            предусмотренных законодательством РФ, либо когда это необходимо для исполнения
+            договора (например, привлечение подрядчиков).
+          </p>
+          <p>
+            Данные хранятся в срок, необходимый для достижения указанных целей, после чего
+            могут быть обезличены или удалены. Для отзыва согласия или уточнения информации
+            пользователь может связаться с компанией по телефонам, указанным в разделе
+            «Контакты».
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrapper footer-inner">
+      <div>
+        <div>© 2025 Firestreet. Все права защищены.</div>
+        <div class="footer-slogan">Ваши желания — прежде всего.</div>
+      </div>
+      <div class="footer-right">
+        <a href="#privacy">Политика конфиденциальности</a>
+        <div class="footer-credit">Сайт сделан <span>Kava.create</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JS: контент из JSON + Netlify Form + WhatsApp ===== -->
+  <script>
+    (function () {
+      var phoneMainHrefDefault = "tel:+79150000056";
+      var phoneSecondHrefDefault = "tel:+79850000056";
+      var phoneMainHrefCurrent = phoneMainHrefDefault;
+      var phoneSecondHrefCurrent = phoneSecondHrefDefault;
+
+      /* Загрузка контента для hero, телефонов и ссылок */
+      fetch("content/home.json")
+        .then(function (resp) {
+          if (!resp.ok) throw new Error("Нет файла content/home.json");
+          return resp.json();
+        })
+        .then(function (data) {
+          function setText(selector, value) {
+            var el = document.querySelector(selector);
+            if (el && value) el.textContent = value;
+          }
+
+          setText('[data-content="hero_title"]', data.hero_title);
+          setText('[data-content="hero_subtitle"]', data.hero_subtitle);
+          setText('[data-content="hero_bullet_1"]', data.hero_bullet_1);
+          setText('[data-content="hero_bullet_2"]', data.hero_bullet_2);
+          setText('[data-content="hero_bullet_3"]', data.hero_bullet_3);
+
+          var phoneMainText = data.phone_main || "+7 (915) 000-00-56";
+          var phoneSecondText = data.phone_second || "+7 (985) 000-00-56";
+          phoneMainHrefCurrent = data.phone_main_href || phoneMainHrefDefault;
+          phoneSecondHrefCurrent = data.phone_second_href || phoneSecondHrefDefault;
+
+          function setPhone(selector, href, text, prependCall) {
+            var el = document.querySelector(selector);
+            if (!el) return;
+            if (href) el.href = href;
+            if (text) el.textContent = prependCall ? ("Позвонить: " + text) : text;
+          }
+
+          // кнопка "Позвонить" в hero
+          setPhone('[data-role="phone-main-button"]', phoneMainHrefCurrent, phoneMainText, true);
+          // телефоны в списках
+          setPhone('[data-role="phone-main-list"]', phoneMainHrefCurrent, phoneMainText, false);
+          setPhone('[data-role="phone-main-list-2"]', phoneMainHrefCurrent, phoneMainText, false);
+          setPhone('[data-role="phone-second-list"]', phoneSecondHrefCurrent, phoneSecondText, false);
+          setPhone('[data-role="phone-second-list-2"]', phoneSecondHrefCurrent, phoneSecondText, false);
+
+          // телефон в шапке — только href, текст остаётся "Бесплатная консультация..."
+          var headerPhone = document.querySelector('[data-role="phone-main-header"]');
+          if (headerPhone && phoneMainHrefCurrent) {
+            headerPhone.href = phoneMainHrefCurrent;
+          }
+
+          // обновляем кнопку "Связаться в WhatsApp" под контактом
+          var waContactBtn = document.querySelector('[data-role="whatsapp-contact"]');
+          if (waContactBtn) {
+            var phoneDigitsForWa = (phoneMainHrefCurrent || phoneMainHrefDefault).replace(/^tel:\+?/, "");
+            waContactBtn.href = "https://wa.me/" + phoneDigitsForWa;
+          }
+
+          // обновляем ссылку на Telegram, если задана в CMS
+          var telegramBtn = document.querySelector('[data-role="telegram-contact"]');
+          if (telegramBtn && data.telegram_link) {
+            telegramBtn.href = data.telegram_link;
+          }
+        })
+        .catch(function (err) {
+          console.log("Ошибка загрузки content/home.json, используются значения по умолчанию:", err);
+        });
+
+      /* ===== ПОРТФОЛИО (ДО/ПОСЛЕ) ===== */
+      function renderPortfolio() {
+        var container = document.getElementById("portfolio-list");
+        if (!container) return;
+
+        fetch("content/portfolio.json")
+          .then(function (resp) { return resp.json(); })
+          .then(function (data) {
+            container.innerHTML = "";
+            if (!data.items || !data.items.length) return;
+
+            data.items.forEach(function (item, index) {
+              var wrapper = document.createElement("div");
+              wrapper.className = "fade";
+              wrapper.style.animationDelay = (0.05 * (index + 1)) + "s";
+
+              wrapper.innerHTML = `
+                <div class="card portfolio-item">
+                  <div class="portfolio-images">
+                    <img src="${item.before}" alt="${item.title} — участок до работ">
+                    <img src="${item.after}" alt="${item.title} — участок после работ">
+                  </div>
+                  <div class="portfolio-text">
+                    <div class="portfolio-tag">${item.tag || ""}</div>
+                    <p>${item.description || ""}</p>
+                  </div>
+                </div>
+              `;
+
+              container.appendChild(wrapper);
+            });
+          })
+          .catch(function (err) {
+            console.log("Ошибка загрузки content/portfolio.json:", err);
+          });
+      }
+
+      /* ===== ВИДЕО ===== */
+      function renderVideos() {
+        var container = document.getElementById("video-list");
+        if (!container) return;
+
+        fetch("content/videos.json")
+          .then(function (resp) { return resp.json(); })
+          .then(function (data) {
+            container.innerHTML = "";
+            if (!data.items || !data.items.length) return;
+
+            data.items.forEach(function (item, index) {
+              var wrapper = document.createElement("div");
+              wrapper.className = "fade";
+              wrapper.style.animationDelay = (0.05 * (index + 1)) + "s";
+
+              wrapper.innerHTML = `
+                <div class="card">
+                  <div class="video-box">
+                    <video controls src="${item.file}"></video>
+                  </div>
+                  <p class="video-note">${item.title || ""}</p>
+                </div>
+              `;
+
+              container.appendChild(wrapper);
+            });
+          })
+          .catch(function (err) {
+            console.log("Ошибка загрузки content/videos.json:", err);
+          });
+      }
+
+      // запускаем отрисовку списков
+      renderPortfolio();
+      renderVideos();
+
+      /* ===== ФОРМА: Netlify + WhatsApp ===== */
+      var form = document.getElementById("request-form");
+      if (!form) return;
+
+      function encode(data) {
+        var pairs = [];
+        for (var key in data) {
+          if (data.hasOwnProperty(key)) {
+            pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
+          }
+        }
+        return pairs.join("&");
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var formData = new FormData(form);
+        var data = {};
+        formData.forEach(function (value, key) {
+          data[key] = value;
+        });
+
+        // отправляем в Netlify (Forms)
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({
+            "form-name": form.getAttribute("name") || "firestreet-request",
+            name: data.name || "",
+            phone: data.phone || "",
+            service: data.service || "",
+            message: data.message || ""
+          })
+        }).catch(function (err) {
+          console.log("Ошибка отправки в Netlify:", err);
+        });
+
+        // текст для WhatsApp
+        var lines = [
+          "Новая заявка с сайта Firestreet:",
+          "",
+          "Имя: " + (data.name || "-"),
+          "Телефон: " + (data.phone || "-"),
+          "Услуга: " + (data.service || "-"),
+          "",
+          "Комментарий:",
+          data.message || "-"
+        ];
+
+        var message = encodeURIComponent(lines.join("\n"));
+        var phoneHref = phoneMainHrefCurrent || phoneMainHrefDefault;
+        var phoneDigits = phoneHref.replace(/^tel:\+?/, "");
+        var waUrl = "https://wa.me/" + phoneDigits + "?text=" + message;
+
+        window.location.href = waUrl;
+        form.reset();
+      });
+    })();
+  </script>
+
+</body>
+</html>
