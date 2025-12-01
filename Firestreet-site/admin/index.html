@@ -6,7 +6,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-  <!-- Netlify CMS -->
+  <!-- Подключаем Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms-app@^2.0.0/dist/netlify-cms.js"></script>
-</body>
-</html>
+
+  <script>
+    // Ждём, пока CMS загрузится
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!window.CMS) {
+        console.error("Netlify CMS не загрузился");
+        return;
+      }
+
+      window.CMS.init({
+        config: {
+          backend: {
+            name: "git-gateway",
+            branch: "main",
+          },
+
+          media_folder: "Images/uploads",
+          public_folder: "/Images/uploads",
+
+          collections: [
+            {
+              name: "home",
+              label: "Основные тексты и телефоны",
+              file: "content/home.json",
+              format: "json",
+              fields: [
+                {
+                  label: "Заголовок (hero)",
+                  name: "hero_title",
+                  widget: "string",
+                },
+                {
+                  label: "Подзаголовок (hero)",
+                  name: "hero_subtitle",
+                  widget: "text",
+                },
+                {
+                  label: "Пункт 1 (hero)",
+                  name: "hero_bullet_1",
+                  widget: "string",
+                },
+                {
+                  label: "Пункт 2 (hero)",
+                  name: "hero_bullet_2",
+                  widget: "string",
+                },
+                {
+                  label: "Пункт 3 (hero)",
+                  name: "hero_bullet_3",
+                  widget: "string",
+                },
+                {
+                  label: "Основной телефон (текст)",
+                  name: "phone_main",
+                  widget: "string",
+                },
+                {
+                  label: "Основной телефон (tel:+...)",
+                  name: "phone_main_href",
+                  widget: "string",
+                },
+                {
+                  label: "Второй телефон (текст)",
+                  name: "phone_second",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Второй телефон (tel:+...)",
+                  name: "phone_second_href",
+                  widget: "string",
+                  required: false,
+                },
+                {
+                  label: "Ссылка на Telegram",
+                  name: "telegram_link",
+                  widget: "string",
+                  required: false,
+                },
+              ],
+            },
+
+            {
+              name: "portfolio",
+              label: "Раб
