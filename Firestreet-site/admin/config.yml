@@ -2,91 +2,132 @@ backend:
   name: git-gateway
   branch: main
 
-locale: ru
+media_folder: "Images/uploads"
+public_folder: "/Images/uploads"
 
-media_folder: "Images/uploads"      # сюда CMS будет заливать новые файлы
-public_folder: "/Images/uploads"    # так к ним обращается сайт
+locale: "ru"
 
 collections:
+  # Главная страница (hero + услуги + телефоны)
   - label: "Контент сайта"
-    name: "site"
+    name: "site_content"
     files:
-
-      # ---------- ГЛАВНАЯ СТРАНИЦА ----------
       - label: "Главная страница"
         name: "home"
         file: "content/home.json"
         format: "json"
         fields:
-          - { label: "Бейдж над заголовком", name: "badge", widget: "string" }
-          - { label: "Заголовок", name: "title", widget: "string" }
-          - { label: "Описание", name: "description", widget: "text" }
-
-          - label: "Пункты под описанием"
+          - label: "Бейдж над заголовком"
+            name: "badge"
+            widget: "string"
+          - label: "Заголовок"
+            name: "title"
+            widget: "string"
+          - label: "Описание под заголовком"
+            name: "description"
+            widget: "text"
+          - label: "Список преимуществ"
             name: "bullets"
             widget: "list"
             field:
               label: "Пункт"
               name: "item"
               widget: "string"
-
-          - { label: "Текст зелёной кнопки", name: "cta_primary", widget: "string" }
-          - { label: "Текст чёрной кнопки", name: "cta_secondary", widget: "string" }
-          - { label: "Подпись под блоком", name: "subtitle", widget: "string" }
-
-          - { label: "Заголовок блока 'Чем мы занимаемся'", name: "services_title", widget: "string" }
-
-          - label: "Услуги"
+          - label: "Текст кнопки — основная"
+            name: "cta_primary"
+            widget: "string"
+          - label: "Текст кнопки — позвонить"
+            name: "cta_secondary"
+            widget: "string"
+          - label: "Подзаголовок под кнопками"
+            name: "subtitle"
+            widget: "string"
+          - label: "Заголовок блока услуг"
+            name: "services_title"
+            widget: "string"
+          - label: "Услуги (список)"
             name: "services"
             widget: "list"
             field:
               label: "Услуга"
-              name: "service"
+              name: "item"
               widget: "string"
-
-          - label: "Телефоны (список)"
+          - label: "Телефоны для связи"
             name: "phones"
             widget: "list"
             field:
               label: "Телефон"
-              name: "phone"
+              name: "item"
               widget: "string"
+          - label: "Фраза внизу (под телефонами)"
+            name: "footer_note"
+            widget: "string"
+          - label: "Номер WhatsApp для формы"
+            name: "whatsapp_number"
+            widget: "string"
+          - label: "Ссылка на Telegram (если нужна)"
+            name: "telegram_link"
+            widget: "string"
+            required: false
 
-          - { label: "Фраза в самом низу", name: "footer_note", widget: "string" }
-          - { label: "Номер для WhatsApp", name: "whatsapp_number", widget: "string" }
-          - { label: "Ссылка на Telegram", name: "telegram_link", widget: "string" }
-
-      # ---------- ПОРТФОЛИО: ДО / ПОСЛЕ ----------
-      - label: "Портфолио: До / После"
+      - label: "Портфолио: до / после"
         name: "portfolio"
         file: "content/portfolio.json"
         format: "json"
         fields:
-          - { label: "Заголовок блока", name: "title", widget: "string" }
-          - { label: "Описание под заголовком", name: "description", widget: "text" }
-
+          - label: "Заголовок блока"
+            name: "title"
+            widget: "string"
+          - label: "Описание под заголовком"
+            name: "description"
+            widget: "text"
+            required: false
           - label: "Работы"
             name: "items"
             widget: "list"
             fields:
-              - { label: "Название / короткий заголовок", name: "title", widget: "string" }
-              - { label: "Описание (опционально)", name: "description", widget: "text", required: false }
-              - { label: "Фото ДО", name: "before", widget: "image" }
-              - { label: "Фото ПОСЛЕ", name: "after", widget: "image" }
+              - label: "Название объекта"
+                name: "title"
+                widget: "string"
+              - label: "Описание (optional)"
+                name: "description"
+                widget: "text"
+                required: false
+              - label: "Фото ДО"
+                name: "before"
+                widget: "image"
+              - label: "Фото ПОСЛЕ"
+                name: "after"
+                widget: "image"
 
-      # ---------- ВИДЕО ----------
       - label: "Видео"
         name: "videos"
         file: "content/videos.json"
         format: "json"
         fields:
-          - { label: "Заголовок блока", name: "title", widget: "string" }
-          - { label: "Описание под заголовком", name: "description", widget: "text", required: false }
-
+          - label: "Заголовок блока"
+            name: "title"
+            widget: "string"
+          - label: "Описание под заголовком (optional)"
+            name: "description"
+            widget: "text"
+            required: false
           - label: "Видео"
             name: "items"
             widget: "list"
             fields:
-              - { label: "Название", name: "title", widget: "string" }
-              - { label: "Описание (опционально)", name: "description", widget: "text", required: false }
-              - { label: "Файл или ссылка", name: "src", widget: "string", hint: "Можно путь к файлу из папки Video или ссылку на видео" }
+              - label: "Название"
+                name: "title"
+                widget: "string"
+              - label: "Описание (optional)"
+                name: "description"
+                widget: "text"
+                required: false
+              - label: "Файл видео (загрузить)"
+                name: "file"
+                widget: "file"
+                required: false
+              - label: "Или ссылка (YouTube / другая)"
+                name: "url"
+                widget: "string"
+                required: false
