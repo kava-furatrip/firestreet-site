@@ -2,66 +2,108 @@ backend:
   name: git-gateway
   branch: main
 
-# КУДА CMS БУДЕТ КЛАСТЬ КАРТИНКИ В РЕПО
-media_folder: "Firestreet-site/Images"
-# КАК ЭТИ КАРТИНКИ ВИДИТ САЙТ В БРАУЗЕРЕ
+local_backend: true
+
+locale: "ru"
+
+# Куда админка будет складывать загруженные файлы
+media_folder: "Images"
 public_folder: "/Images"
 
+site_url: "https://firestreet.ru"
+
 collections:
-  - name: "content"
-    label: "Контент сайта"
-    files:
-      - name: "home"
-        label: "Главная страница"
-        file: "Firestreet-site/content/home.json"
-        fields:
-          - { name: "badge", label: "Бейдж над заголовком", widget: "string" }
-          - { name: "title", label: "Заголовок", widget: "string" }
-          - { name: "description", label: "Основной текст", widget: "text" }
-          - label: "Преимущества"
-            name: "bullets"
-            widget: "list"
-            field:
-              { name: "item", label: "Пункт", widget: "string" }
-          - { name: "cta_primary", label: "Текст зелёной кнопки", widget: "string" }
-          - { name: "cta_secondary", label: "Текст чёрной кнопки", widget: "string" }
-          - { name: "subtitle", label: "Подпись под кнопками", widget: "string" }
-          - { name: "services_title", label: "Заголовок блока «Чем мы занимаемся»", widget: "string" }
-          - label: "Список услуг (главный блок)"
-            name: "services"
-            widget: "list"
-            field:
-              { name: "item", label: "Услуга", widget: "string" }
-          - label: "Телефоны для связи"
-            name: "phones"
-            widget: "list"
-            field:
-              { name: "phone", label: "Телефон", widget: "string" }
-          - { name: "footer_note", label: "Фраза внизу сайта", widget: "string", required: false }
-          - { name: "whatsapp_number", label: "Номер для WhatsApp", widget: "string", required: false }
-          - { name: "telegram_link", label: "Ссылка на Telegram", widget: "string", required: false }
+  # ---- Главная страница (оставляем простой набор полей) ----
+  - name: "home"
+    label: "Главная страница"
+    file: "content/home.json"
+    format: "json"
+    fields:
+      - { label: "ID (не трогать)", name: "id", widget: "hidden", default: "home" }
 
-      - name: "portfolio"
-        label: "Портфолио: До / После"
-        file: "Firestreet-site/content/portfolio.json"
-        fields:
-          - label: "Объекты"
-            name: "items"
-            widget: "list"
-            fields:
-              - { name: "title", label: "Название объекта", widget: "string" }
-              - { name: "type", label: "Тип / подпись", widget: "string", required: false }
-              - { name: "before", label: "Фото ДО", widget: "image" }
-              - { name: "after", label: "Фото ПОСЛЕ", widget: "image" }
+      - label: "Главный заголовок"
+        name: "heroTitle"
+        widget: "string"
 
-      - name: "videos"
-        label: "Видео"
-        file: "Firestreet-site/content/videos.json"
+      - label: "Подзаголовок под заголовком"
+        name: "heroSubtitle"
+        widget: "text"
+
+      - label: "Буллеты в главном блоке"
+        name: "heroBullets"
+        widget: "list"
+        field:
+          label: "Пункт"
+          name: "text"
+          widget: "string"
+
+      - label: "Основной телефон (для кнопок)"
+        name: "mainPhone"
+        widget: "string"
+
+      - label: "Заголовок блока “Чем мы занимаемся”"
+        name: "servicesTitle"
+        widget: "string"
+
+      - label: "Список услуг"
+        name: "services"
+        widget: "list"
+        field:
+          label: "Услуга"
+          name: "text"
+          widget: "string"
+
+  # ---- Портфолио: до / после ----
+  - name: "portfolio"
+    label: "Портфолио: До / После"
+    file: "content/portfolio.json"
+    format: "json"
+    fields:
+      - label: "Работы"
+        name: "items"
+        widget: "list"
+        summary: "{{fields.title}}"
         fields:
-          - label: "Видео"
-            name: "items"
-            widget: "list"
-            fields:
-              - { name: "title", label: "Название", widget: "string" }
-              - { name: "description", label: "Описание", widget: "text", required: false }
-              - { name: "url", label: "Файл или ссылка", widget: "string" }
+          - label: "Название объекта"
+            name: "title"
+            widget: "string"
+
+          - label: "Описание (отображается под фото)"
+            name: "description"
+            widget: "text"
+            required: false
+
+          - label: "Фото ДО"
+            name: "before"
+            widget: "image"
+
+          - label: "Фото ПОСЛЕ"
+            name: "after"
+            widget: "image"
+
+  # ---- Видео ----
+  - name: "videos"
+    label: "Видео"
+    file: "content/videos.json"
+    format: "json"
+    fields:
+      - label: "Ролики"
+        name: "items"
+        widget: "list"
+        summary: "{{fields.title}}"
+        fields:
+          - label: "Название ролика"
+            name: "title"
+            widget: "string"
+
+          - label: "Описание (опционально)"
+            name: "description"
+            widget: "text"
+            required: false
+
+          # тут можно и загрузить файл, и просто вставить ссылку
+          - label: "Файл или ссылка"
+            name: "src"
+            widget: "file"
+            media_folder: "Video"
+            public_folder: "/Video"
