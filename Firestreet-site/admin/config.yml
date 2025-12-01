@@ -2,108 +2,66 @@ backend:
   name: git-gateway
   branch: main
 
-# Локальный режим (можно оставить, не мешает)
-local_backend: true
-
-media_folder: "Images/uploads"      # куда будут складываться файлы в репозитории
-public_folder: "/Images/uploads"    # как эти файлы будут доступны на сайте
-
-publish_mode: editorial_workflow
+# КУДА CMS БУДЕТ КЛАСТЬ КАРТИНКИ В РЕПО
+media_folder: "Firestreet-site/Images"
+# КАК ЭТИ КАРТИНКИ ВИДИТ САЙТ В БРАУЗЕРЕ
+public_folder: "/Images"
 
 collections:
-  - name: "pages"
+  - name: "content"
     label: "Контент сайта"
     files:
-      # Главная страница
-      - label: "Главная страница"
-        name: "home"
-        file: "content/home.json"
-        format: "json"
+      - name: "home"
+        label: "Главная страница"
+        file: "Firestreet-site/content/home.json"
         fields:
-          - label: "Заголовок в первом экране"
-            name: "heroTitle"
-            widget: "string"
-          - label: "Подзаголовок"
-            name: "heroSubtitle"
-            widget: "text"
-          - label: "Пункты списка в первом экране"
-            name: "heroBullets"
+          - { name: "badge", label: "Бейдж над заголовком", widget: "string" }
+          - { name: "title", label: "Заголовок", widget: "string" }
+          - { name: "description", label: "Основной текст", widget: "text" }
+          - label: "Преимущества"
+            name: "bullets"
             widget: "list"
             field:
-              label: "Пункт"
-              name: "text"
-              widget: "string"
-
-          - label: "Телефон для кнопок"
-            name: "phone"
-            widget: "string"
-
-          - label: "Ссылка WhatsApp (https://...)"
-            name: "whatsapp"
-            widget: "string"
-            required: false
-
-          - label: "Ссылка Telegram (https://...)"
-            name: "telegram"
-            widget: "string"
-            required: false
-
-          - label: "Заголовок блока услуг"
-            name: "servicesTitle"
-            widget: "string"
-
-          - label: "Список услуг"
+              { name: "item", label: "Пункт", widget: "string" }
+          - { name: "cta_primary", label: "Текст зелёной кнопки", widget: "string" }
+          - { name: "cta_secondary", label: "Текст чёрной кнопки", widget: "string" }
+          - { name: "subtitle", label: "Подпись под кнопками", widget: "string" }
+          - { name: "services_title", label: "Заголовок блока «Чем мы занимаемся»", widget: "string" }
+          - label: "Список услуг (главный блок)"
             name: "services"
             widget: "list"
-            fields:
-              - label: "Название"
-                name: "title"
-                widget: "string"
-              - label: "Описание"
-                name: "description"
-                widget: "text"
-                required: false
+            field:
+              { name: "item", label: "Услуга", widget: "string" }
+          - label: "Телефоны для связи"
+            name: "phones"
+            widget: "list"
+            field:
+              { name: "phone", label: "Телефон", widget: "string" }
+          - { name: "footer_note", label: "Фраза внизу сайта", widget: "string", required: false }
+          - { name: "whatsapp_number", label: "Номер для WhatsApp", widget: "string", required: false }
+          - { name: "telegram_link", label: "Ссылка на Telegram", widget: "string", required: false }
 
-      # Портфолио до/после
-      - label: "Портфолио: До / После"
-        name: "portfolio"
-        file: "content/portfolio.json"
-        format: "json"
+      - name: "portfolio"
+        label: "Портфолио: До / После"
+        file: "Firestreet-site/content/portfolio.json"
         fields:
-          - label: "Работы"
+          - label: "Объекты"
             name: "items"
             widget: "list"
             fields:
-              - label: "Тип объекта"
-                name: "category"
-                widget: "select"
-                options:
-                  - "Частный дом"
-                  - "Под строительство"
-                  - "Коммерческий объект"
-              - label: "Описание"
-                name: "title"
-                widget: "string"
-              - label: "Фото ДО"
-                name: "before"
-                widget: "image"
-              - label: "Фото ПОСЛЕ"
-                name: "after"
-                widget: "image"
+              - { name: "title", label: "Название объекта", widget: "string" }
+              - { name: "type", label: "Тип / подпись", widget: "string", required: false }
+              - { name: "before", label: "Фото ДО", widget: "image" }
+              - { name: "after", label: "Фото ПОСЛЕ", widget: "image" }
 
-      # Видео
-      - label: "Видео"
-        name: "videos"
-        file: "content/videos.json"
-        format: "json"
+      - name: "videos"
+        label: "Видео"
+        file: "Firestreet-site/content/videos.json"
         fields:
-          - label: "Ролики"
+          - label: "Видео"
             name: "items"
             widget: "list"
             fields:
-              - label: "Название"
-                name: "title"
-                widget: "string"
-              - label: "Ссылка на видео (YouTube/VK и т.п.)"
-                name: "url"
-                widget: "string"
+              - { name: "title", label: "Название", widget: "string" }
+              - { name: "description", label: "Описание", widget: "text", required: false }
+              - { name: "url", label: "Файл или ссылка", widget: "string" }
